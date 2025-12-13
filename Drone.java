@@ -60,4 +60,13 @@ public abstract class Drone{
         double TripDistance = this.position.distanceTo(destination) * 2;
         return calculateConsumption(TripDistance) <= battery;
     }
+
+    public void flyTo(Position destination) {
+        double distance = this.position.distanceTo(destination);
+        double consumption = calculateConsumption(distance);
+        this.battery -= consumption;
+        this.totalDistance += distance;
+        this.position = destination;
+        this.positionHistory.add(destination);
+    }
 }
