@@ -54,4 +54,5 @@ public abstract class Drone{
     public List<Position> getPositionHistory() { return positionHistory; }
     public void setPositionHistory(List<Position> positionHistory) { this.positionHistory = positionHistory; }
      
+    public abstract double calculateConsumption(double distance);
 }
