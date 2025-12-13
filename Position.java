@@ -25,4 +25,9 @@ public class Position{
         this.y = this.y + ratio * (destination.y - this.y);
     }
 
+    @Override
+    public String toString() {
+        return String.format("(%.2f, %.2f)", x, y);
+    }
+
 }
