@@ -69,4 +69,8 @@ public abstract class Drone{
         this.position = destination;
         this.positionHistory.add(destination);
     }
+
+    public void recharge(double percentage) {
+        this.battery = Math.min(100, this.battery + percentage);
+    }
 }
