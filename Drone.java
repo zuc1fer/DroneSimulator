@@ -54,25 +54,3 @@ public abstract class Drone{
     public void setPositionHistory(List<Position> positionHistory) { this.positionHistory = positionHistory; }
      
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
