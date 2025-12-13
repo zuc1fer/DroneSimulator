@@ -78,4 +78,12 @@ public abstract class Drone{
         return String.format("Drone[ID=%d, Model=%s, Position=%s, Battery=%.1f%%, Status=%s]",
                 id, model, position, battery, status);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Drone drone = (Drone) obj;
+        return id == drone.id;
+    }
 }
