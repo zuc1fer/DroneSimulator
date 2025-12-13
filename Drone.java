@@ -14,7 +14,7 @@ public abstract class Drone{
     private double totalDistance;
     private List<Position> positionHistory;
 
-    public Drone(Position nposition , double nbattery , String nmodel , double nspeed , double ncapacity , String nstatus , double ntotalDistance , List<Position> npositionHistory){
+    public Drone(Position nposition , double nbattery , String nmodel , double nspeed , double ncapacity , List<Position> npositionHistory){
 
         this.id = nextId++;
         this.position = nposition;
@@ -22,13 +22,14 @@ public abstract class Drone{
         this.model = nmodel;
         this.speed = nspeed;
         this.capacity = ncapacity;
-        this.status = nstatus;
-        this.totalDistance = ntotalDistance;
-        this.positionHistory = npositionHistory;
-        
+        this.status = "Available";
+        this.totalDistance = 0;
+        this.positionHistory = new ArrayList<>();
+        this.positionHistory.add(nposition);
     }
 
     public int getId() { return id; }
+
     public Position getPosition() { return position; }
     public void setPosition(Position position) { this.position = position; }
 
