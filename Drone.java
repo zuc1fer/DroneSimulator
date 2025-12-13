@@ -73,4 +73,9 @@ public abstract class Drone{
     public void recharge(double percentage) {
         this.battery = Math.min(100, this.battery + percentage);
     }
+
+    public String toString() {
+        return String.format("Drone[ID=%d, Model=%s, Position=%s, Battery=%.1f%%, Status=%s]",
+                id, model, position, battery, status);
+    }
 }
