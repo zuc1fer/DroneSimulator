@@ -55,4 +55,9 @@ public abstract class Drone{
     public void setPositionHistory(List<Position> positionHistory) { this.positionHistory = positionHistory; }
      
     public abstract double calculateConsumption(double distance);
+
+    public boolean canFlyTo(Position destination) {
+        double TripDistance = this.position.distanceTo(destination) * 2;
+        return calculateConsumption(TripDistance) <= battery;
+    }
 }
