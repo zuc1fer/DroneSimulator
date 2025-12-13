@@ -1,15 +1,19 @@
 public class DeliveryZone{
-    private double center;
+    private Position center;
     private double radius;
 
-    public DeliveryZone(double nc , double nr){
+    public DeliveryZone(Position nc , double nr){
         this.center = nc;
         this.radius = nr;
     }
 
-    public double getCentre(){return center;}
+    public Position getCentre(){return center;}
     public double getRadius(){return radius;}
 
-    public void setCenter(double nc){this.center = nc;}
+    public void setCenter(Position nc){this.center = nc;}
     public void setRadius(double nr){this.radius = nr;}
+
+    public boolean contains(Position p) {
+        return center.distanceTo(p) <= radius;
+    }
 }
