@@ -30,4 +30,12 @@ public class Position{
         return String.format("(%.2f, %.2f)", x, y);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Position other = (Position) obj;
+        return Double.compare(other.x, x) == 0 && Double.compare(other.y, y) == 0;
+    }
+    
 }
