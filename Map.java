@@ -16,4 +16,13 @@ public class Map{
     public List<DeliveryZone> getDZ(){return dz;}
     public List<NoFlyZone> getNFZ(){return nfz;}
 
+    public boolean isAllowed(Position p) {
+        for (NoFlyZone zone : nfz) {
+            if (zone.contains(p)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
 }
