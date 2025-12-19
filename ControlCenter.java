@@ -100,6 +100,7 @@ public class ControlCenter {
 
     public void completeDelivery(Order order, Drone drone) {
         order.setStatus("DELIVERED");
+        drone.incrementDeliveryCount();
         drone.setStatus("RETURN_TO_BASE");
         drone.flyTo(base);
         drone.setStatus("AVAILABLE");
