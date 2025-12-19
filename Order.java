@@ -30,4 +30,18 @@ public class Order {
     public void setCost(double cost) { this.cost = cost; }
     public void setUrgency(String urgency) { this.urgency = urgency; }
     public void setStatus(String status) { this.status = status; }
+
+    @Override
+    public String toString() {
+        return String.format("Order[ID=%d, Client=%s, Urgency=%s, Status=%s, Cost=%.2f]",
+                id, client, urgency, status, cost);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Order order = (Order) obj;
+        return id == order.id;
+    }
 }
