@@ -30,4 +30,18 @@ public class Simulator {
         orderStatusCounts.put("DELIVERED", 0);
         orderStatusCounts.put("FAILED", 0);
     }
+
+    public void runSimulation() {
+
+        for (currentMinute = 0; currentMinute < SIMULATION_DURATION; currentMinute++) {
+            simulateMinute(currentMinute);
+
+            if (currentMinute % 60 == 0 && currentMinute > 0) {
+            }
+        }
+    }
+
+    private void simulateMinute(int minute) {
+
+    }
 }
