@@ -25,25 +25,31 @@ public class ControlCenter {
     }
 
     public Drone findDroneForOrder(Order order) {
+        Drone bestDrone = null;
+        double bestScore = -1;
+        
         Position dest = order.getDeliverable().getDestination();
         double weight = order.getDeliverable().getWeight();
         
         for (Drone drone : fleet) {
-            boolean capacityOk = drone.getCapacity() >= weight;
-            boolean allowed = map.isAllowed(dest);
-            boolean batteryOk = drone.canFlyTo(dest);
-            boolean isAvailable = drone.getStatus().equals("AVAILABLE");
+            if (!drone.getStatus().equals("AVAILABLE")) continue;
+            if (drone.getCapacity() < weight) continue;
+            if (!map.isAllowed(dest)) continue;
+            if (!drone.canFlyTo(dest)) continue;
             
-            boolean expressOk = true;
-            if (order.getUrgency().equals("EXPRESS")) {
-                expressOk = drone instanceof ExpressDrone;
+            if (order.getUrgency().equals("EXPRESS") && !(drone instanceof ExpressDrone)) {
+                continue;
             }
             
-            if (capacityOk && allowed && batteryOk && isAvailable && expressOk) {
-                return drone;
+            double score = calculateDroneScore(drone, order, dest);
+            
+            if (score > bestScore) {
+                bestScore = score;
+                bestDrone = drone;
             }
         }
-        return null;
+        
+        return bestDrone;
     }
 
     public boolean assignOrder(Order order) {
