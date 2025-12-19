@@ -14,7 +14,7 @@ public abstract class Drone{
     private double totalDistance;
     private List<Position> positionHistory;
 
-    public Drone(Position nposition , double nbattery , String nmodel , double nspeed , double ncapacity , List<Position> npositionHistory){
+    public Drone(Position nposition , double nbattery , String nmodel , double nspeed , double ncapacity){
 
         this.id = nextId++;
         this.position = nposition;
@@ -53,7 +53,7 @@ public abstract class Drone{
 
     public List<Position> getPositionHistory() { return positionHistory; }
     public void setPositionHistory(List<Position> positionHistory) { this.positionHistory = positionHistory; }
-     
+
     public abstract double calculateConsumption(double distance);
 
     public boolean canFlyTo(Position destination) {
