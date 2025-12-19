@@ -45,4 +45,42 @@ public class ControlCenter {
         }
         return null;
     }
+
+    public boolean assignOrder(Order order) {
+        Drone drone = findDroneForOrder(order);
+        
+        if (drone != null) {
+            double deliveryCost = calculateDeliveryCost(order, drone);
+            order.setCost(deliveryCost);
+            
+            drone.setStatus("IN_DELIVERY");
+            
+            order.setStatus("IN_PROGRESS");
+            
+            if (pendingOrders.contains(order)) {
+                pendingOrders.remove(order);
+            }
+            processedOrders.add(order);
+            
+            totalDeliveries++;
+            
+            double distance = drone.getPosition().distanceTo(order.getDeliverable().getDestination()) * 2;
+            double consumption = drone.calculateConsumption(distance);
+            
+            if (drone instanceof StandardDrone) {
+                standardDroneEnergy += consumption;
+            } else if (drone instanceof ExpressDrone) {
+                expressDroneEnergy += consumption;
+            } else if (drone instanceof HeavyDrone) {
+                heavyDroneEnergy += consumption;
+            }
+            
+            return true;
+        } else {
+            if (!pendingOrders.contains(order)) {
+                pendingOrders.add(order);
+            }
+            return false;
+        }
+    }
 }
