@@ -105,4 +105,18 @@ public class ControlCenter {
         drone.setStatus("AVAILABLE");
         totalDistance += drone.getTotalDistance();
     }
+
+    public void failDelivery(Order order, Drone drone) {
+        order.setStatus("FAILED");
+        drone.setStatus("RETURN_TO_BASE");
+        
+        if (drone.canFlyTo(base)) {
+            drone.flyTo(base);
+            drone.setStatus("AVAILABLE");
+        } else {
+            drone.setStatus("STRANDED");
+        }
+        
+        pendingOrders.add(order);
+    }
 }
