@@ -1,4 +1,5 @@
 public class Order {
+
     private static int nextId = 1;
     private int id;
     private String client;
@@ -19,17 +20,14 @@ public class Order {
     public int getId() { return id; }
 
     public String getClient() { return client; }
-    public void setClient(String client) { this.client = client; }
-
     public Deliverable getDeliverable() { return deliverable; }
-    public void setDeliverable(Deliverable deliverable) { this.deliverable = deliverable; }
-
     public double getCost() { return cost; }
-    public void setCost(double cost) { this.cost = cost; }
-
     public String getUrgency() { return urgency; }
-    public void setUrgency(String urgency) { this.urgency = urgency; }
-
     public String getStatus() { return status; }
+
+    public void setClient(String client) { this.client = client; }
+    public void setDeliverable(Deliverable deliverable) { this.deliverable = deliverable; }
+    public void setCost(double cost) { this.cost = cost; }
+    public void setUrgency(String urgency) { this.urgency = urgency; }
     public void setStatus(String status) { this.status = status; }
 }
