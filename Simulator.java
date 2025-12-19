@@ -136,7 +136,7 @@ public class Simulator {
 
             if (status.equals("IN_DELIVERY")) {
                 if (random.nextDouble() < 0.1) {
-                    // completeDelivery(drone, minute);
+                    completeDelivery(drone, minute);
                 } else {
                     double consumption = 0.5 + random.nextDouble() * 1.0;
                     drone.setBattery(Math.max(0, drone.getBattery() - consumption));
