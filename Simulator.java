@@ -154,6 +154,27 @@ public class Simulator {
         }
     }
 
+    private void updateWeatherConditions(int minute) {
+        if (random.nextDouble() < 0.05) {
+            generateWeatherEvent(minute);
+        }
+    }
+
+    private void generateWeatherEvent(int minute) {
+        Position base = controlCenter.getBase();
+        double angle = random.nextDouble() * 2 * Math.PI;
+        double distance = random.nextDouble() * 10.0;
+        double r = base.getX() + Math.cos(angle) * distance;
+        double s = base.getY() + Math.sin(angle) * distance;
+        Position center = new Position(r, s);
+
+        double radius = 2.0 + random.nextDouble() * 5.0;
+
+        controlCenter.getMap().updateWeather(center, radius);
+        System.out.printf("MIN %04d: Weather Alert! Storm near %s (Radius: %.1fkm)\n",
+                minute, formatPosition(center), radius);
+    }
+
     private double getOrderRateForHour(int hour) {
         if (hour >= 11 && hour < 13)
             return 0.7;
