@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
-public class Map{
+public class CityMap{
     private List<DeliveryZone> dz;
     private List<NoFlyZone> nfz;
     private List<WeatherZone> weatherZones;
 
-    public Map(List<DeliveryZone> ndz , List<NoFlyZone> nnfz ){
+    public CityMap(List<DeliveryZone> ndz , List<NoFlyZone> nnfz ){
 
         this.dz = ndz;
         this.nfz = nnfz;
@@ -50,7 +50,7 @@ public class Map{
             }
         }
     }
-    
+
     public int getActiveWeatherZonesCount() {
         return weatherZones.size();
     }

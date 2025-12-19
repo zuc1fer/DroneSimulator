@@ -6,7 +6,7 @@ public class ControlCenter {
     private List<Drone> DronesList;
     private List<Order> pendingOrders;
     private Position base;
-    private Map map;
+    private CityMap map;
     private List<Order> processedOrders;
 
     private static int totalDeliveries = 0;
@@ -16,7 +16,7 @@ public class ControlCenter {
     private static double expressDroneEnergy = 0;
     private static double heavyDroneEnergy = 0;
 
-    public ControlCenter(List<Drone> DronesList, Position base, Map map) {
+    public ControlCenter(List<Drone> DronesList, Position base, CityMap map) {
         this.DronesList = DronesList;
         this.base = base;
         this.map = map;
@@ -161,25 +161,11 @@ public class ControlCenter {
         pendingOrders.add(order);
     }
 
-    public static int getTotalDeliveries() {
-        return totalDeliveries;
-    }
-
-    public static double getTotalDistance() {
-        return totalDistance;
-    }
-
-    public static double getStandardDroneEnergy() {
-        return standardDroneEnergy;
-    }
-
-    public static double getExpressDroneEnergy() {
-        return expressDroneEnergy;
-    }
-
-    public static double getHeavyDroneEnergy() {
-        return heavyDroneEnergy;
-    }
+    public static int getTotalDeliveries() {return totalDeliveries;}
+    public static double getTotalDistance() {return totalDistance;}
+    public static double getStandardDroneEnergy() {return standardDroneEnergy;}
+    public static double getExpressDroneEnergy() {return expressDroneEnergy;}
+    public static double getHeavyDroneEnergy() {return heavyDroneEnergy;}
 
     public Drone getMostActiveDroneByDistance() {
 
@@ -214,4 +200,9 @@ public class ControlCenter {
         }
         return mostActive;
     }
+
+    public List<Drone> getDrones() {return DronesList;}
+    public List<Order> getPendingOrders() {return pendingOrders;}
+    public Position getBase() {return base;}
+    public CityMap getMap() {return map;}
 }

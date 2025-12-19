@@ -28,7 +28,7 @@ public abstract class Drone{
         this.model = nmodel;
         this.speed = nspeed;
         this.capacity = ncapacity;
-        this.status = "Available";
+        this.status = "AVAILABLE";
         this.totalDistance = 0;
         this.positionHistory = new ArrayList<>();
         this.positionHistory.add(nposition);
@@ -52,13 +52,13 @@ public abstract class Drone{
     public String getModel() { return model; }
     public void setModel(String model) { this.model = model; }
 
-    public double getSpeed() { 
+    public double getSpeed() {
         double baseSpeed = 0;
         if (this instanceof StandardDrone) baseSpeed = 30.0;
         else if (this instanceof ExpressDrone) baseSpeed = 45.0;
         else if (this instanceof HeavyDrone) baseSpeed = 20.0;
-        
-        return baseSpeed * speedFactor; 
+
+        return baseSpeed * speedFactor;
     }
     public void setSpeed(double speed) { this.speed = speed; }
 
