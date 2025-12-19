@@ -44,4 +44,14 @@ public class Simulator {
     private void simulateMinute(int minute) {
 
     }
+
+    private double getOrderRateForHour(int hour) {
+        if (hour >= 11 && hour < 13)
+            return 0.7;
+        if (hour >= 17 && hour < 20)
+            return 0.8;
+        if (hour >= 8 && hour < 19)
+            return 0.4;
+        return 0.1;
+    }
 }
