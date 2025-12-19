@@ -81,14 +81,30 @@ public class Simulator {
         }
     }
 
-    private double getOrderRateForHour(int hour) {
-        if (hour >= 11 && hour < 13)
-            return 0.7;
-        if (hour >= 17 && hour < 20)
-            return 0.8;
-        if (hour >= 8 && hour < 19)
-            return 0.4;
-        return 0.1;
+    private void updateDrones(int minute) {
+        for (Drone drone : controlCenter.getDrones()) {
+            String status = drone.getStatus();
+
+            if (status.equals("IN_DELIVERY")) {
+                if (random.nextDouble() < 0.1) {
+                    // completeDelivery(drone, minute);
+                } else {
+                    double consumption = 0.5 + random.nextDouble() * 1.0;
+                    drone.setBattery(Math.max(0, drone.getBattery() - consumption));
+                }
+            } else if (status.equals("RETURN_TO_BASE")) {
+                if (random.nextDouble() < 0.2) {
+                    drone.setStatus("AVAILABLE");
+                    System.out.printf("MIN %04d: Drone #%02d returned to base (Battery: %.0f%%)\n",
+                            minute, drone.getId(), drone.getBattery());
+                }
+            } else if (status.equals("AVAILABLE") && drone.getBattery() < 100) {
+                double recharge = 1.0 + random.nextDouble() * 2.0;
+                drone.setBattery(Math.min(100, drone.getBattery() + recharge));
+            }
+        }
+    }if(hour>=11&&hour<13)return 0.7;if(hour>=17&&hour<20)return 0.8;if(hour>=8&&hour<19)return 0.4;return 0.1;
+
     }
 
     private Order createOrder(int minute) {
