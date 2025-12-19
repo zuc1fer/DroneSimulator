@@ -144,8 +144,8 @@ public class ControlCenter {
         int maxDeliveries = 0;
         
         for (Drone drone : fleet) {
-            if (drone.getDeliveries() > maxDeliveries) {
-                maxDeliveries = drone.getDeliveries();
+            if (drone.getDeliveryCount() > maxDeliveries) {
+                maxDeliveries = drone.getDeliveryCount();
                 mostActive = drone;
             }
         }
