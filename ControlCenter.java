@@ -86,20 +86,23 @@ public class ControlCenter {
 
     public double calculateDeliveryCost(Order order, Drone drone) {
         Position dest = order.getDeliverable().getDestination();
-        
         double distance = drone.getPosition().distanceTo(dest) * 2;
-        
         double consumption = drone.calculateConsumption(distance);
-        
         double operationCost = (distance * 0.1) + (consumption * 0.02) + 20;
-        
         double initialPrice = order.getCost();
         double insurance = Math.max(initialPrice * 0.02, 10);
-        
         if (order.getUrgency().equals("EXPRESS")) {
             insurance += 20;
         }
-        
+    
         return operationCost + insurance;
+    }
+
+    public void completeDelivery(Order order, Drone drone) {
+        order.setStatus("DELIVERED");
+        drone.setStatus("RETURN_TO_BASE");
+        drone.flyTo(base);
+        drone.setStatus("AVAILABLE");
+        totalDistance += drone.getTotalDistance();
     }
 }
