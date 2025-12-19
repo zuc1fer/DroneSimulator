@@ -42,6 +42,55 @@ public class Simulator {
     }
 
     private void simulateMinute(int minute) {
+        generateOrders(minute);
+        processPendingOrders();
+        updateDrones(minute);
+        // updateWeatherConditions(minute);
+    }
+
+    // ... [Inside updateDrones]
+    if(random.nextDouble()<0.1)
+
+    {
+        completeDelivery(drone, minute);
+    }else
+    {
+    // ...
+
+    private void completeDelivery(Drone drone, int minute) {
+        Order order = deliveryAssignments.get(drone);
+        if (order != null) {
+            if (drone.attemptDelivery()) {
+                order.setStatus("DELIVERED");
+                orderStatusCounts.put("IN_PROGRESS", orderStatusCounts.get("IN_PROGRESS") - 1);
+                orderStatusCounts.put("DELIVERED", orderStatusCounts.get("DELIVERED") + 1);
+
+                deliveryCounts.put(drone, deliveryCounts.get(drone) + 1);
+
+                double distance = 5.0 + random.nextDouble() * 15;
+                distanceTraveled.put(drone, distanceTraveled.get(drone) + distance);
+
+                double consumption = drone.calculateConsumption(distance);
+                drone.setBattery(Math.max(0, drone.getBattery() - consumption));
+
+                System.out.printf("MIN %04d: Drone #%02d delivered Order #%03d\n",
+                        minute, drone.getId(), order.getId());
+
+                drone.setStatus("RETURN_TO_BASE");
+                deliveryAssignments.remove(drone);
+
+            } else {
+                order.setStatus("FAILED");
+                orderStatusCounts.put("IN_PROGRESS", orderStatusCounts.get("IN_PROGRESS") - 1);
+                orderStatusCounts.put("FAILED", orderStatusCounts.get("FAILED") + 1);
+
+                System.out.printf("MIN %04d: Drone #%02d failed Order #%03d (reliability issue)\n",
+                        minute, drone.getId(), order.getId());
+
+                drone.setStatus("AVAILABLE");
+                deliveryAssignments.remove(drone);
+            }
+        }
     }
 
     private void generateOrders(int minute) {
