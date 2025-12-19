@@ -6,6 +6,6 @@ public class ExpressDrone extends Drone{
 
     @Override
     public double calculateConsumption(double distance) {
-        return distance * 3.0; // 3% per km
+        return distance * 3.0;
     }
 }
