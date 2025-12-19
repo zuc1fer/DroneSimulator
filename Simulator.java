@@ -41,7 +41,8 @@ public class Simulator {
         }
     }
 
-    private void simulateMinute(int minute) {}
+    private void simulateMinute(int minute) {
+    }
 
     private void generateOrders(int minute) {
         int hour = minute / 60;
@@ -93,5 +94,9 @@ public class Simulator {
 
         StandardPackage pkg = new StandardPackage(weight, destination);
         return new Order(clients[random.nextInt(clients.length)], pkg, urgency, basePrice);
+    }
+
+    private String formatPosition(Position pos) {
+        return String.format("[%.1f, %.1f]", pos.getX(), pos.getY());
     }
 }
