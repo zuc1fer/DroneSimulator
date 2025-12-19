@@ -119,4 +119,10 @@ public class ControlCenter {
         
         pendingOrders.add(order);
     }
+
+    public static int getTotalDeliveries() { return totalDeliveries; }
+    public static double getTotalDistance() { return totalDistance; }
+    public static double getStandardDroneEnergy() { return standardDroneEnergy; }
+    public static double getExpressDroneEnergy() { return expressDroneEnergy; }
+    public static double getHeavyDroneEnergy() { return heavyDroneEnergy; }
 }
