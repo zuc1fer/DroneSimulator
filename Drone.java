@@ -12,6 +12,7 @@ public abstract class Drone{
     private double capacity;
     private String status;
     private double totalDistance;
+    private int deliveryCount = 0;
     private List<Position> positionHistory;
 
     public Drone(Position nposition , double nbattery , String nmodel , double nspeed , double ncapacity){
@@ -50,6 +51,9 @@ public abstract class Drone{
 
     public double getTotalDistance() { return totalDistance; }
     public void setTotalDistance(double totalDistance) { this.totalDistance = totalDistance; }
+
+    public int getDeliveryCount() {return deliveryCount;}
+    public void incrementDeliveryCount() {deliveryCount++;}
 
     public List<Position> getPositionHistory() { return positionHistory; }
     public void setPositionHistory(List<Position> positionHistory) { this.positionHistory = positionHistory; }

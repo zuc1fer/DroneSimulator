@@ -125,4 +125,30 @@ public class ControlCenter {
     public static double getStandardDroneEnergy() { return standardDroneEnergy; }
     public static double getExpressDroneEnergy() { return expressDroneEnergy; }
     public static double getHeavyDroneEnergy() { return heavyDroneEnergy; }
+
+    public Drone getMostActiveDroneByDistance() {
+        Drone mostActive = null;
+        double maxDistance = 0;
+        
+        for (Drone drone : fleet) {
+            if (drone.getTotalDistance() > maxDistance) {
+                maxDistance = drone.getTotalDistance();
+                mostActive = drone;
+            }
+        }
+        return mostActive;
+    }
+
+    public Drone getMostActiveDroneByDeliveries() {
+        Drone mostActive = null;
+        int maxDeliveries = 0;
+        
+        for (Drone drone : fleet) {
+            if (drone.getDeliveries() > maxDeliveries) {
+                maxDeliveries = drone.getDeliveries();
+                mostActive = drone;
+            }
+        }
+        return mostActive;
+    }
 }
