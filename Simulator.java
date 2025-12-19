@@ -61,6 +61,26 @@ public class Simulator {
         }
     }
 
+    private void processPendingOrders() {
+        List<Order> pending = new ArrayList<>(controlCenter.getPendingOrders());
+
+        for (Order order : pending) {
+            if (order.getStatus().equals("PENDING")) {
+                Drone drone = controlCenter.findDroneForOrder(order);
+
+                if (drone != null) {
+                    controlCenter.assignOrder(order);
+                    deliveryAssignments.put(drone, order);
+                    orderStatusCounts.put("PENDING", orderStatusCounts.get("PENDING") - 1);
+                    orderStatusCounts.put("IN_PROGRESS", orderStatusCounts.get("IN_PROGRESS") + 1);
+
+                    System.out.printf("MIN %04d: Order #%03d → Drone #%02d (%s)\n",
+                            currentMinute, order.getId(), drone.getId(), drone.getClass().getSimpleName());
+                }
+            }
+        }
+    }
+
     private double getOrderRateForHour(int hour) {
         if (hour >= 11 && hour < 13)
             return 0.7;
