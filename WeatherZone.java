@@ -12,7 +12,6 @@ public class WeatherZone extends NoFlyZone {
     }
 
     public boolean update(int currentTime) {
-        int elapsed = currentTime - startTime;
         duration--;
         return duration > 0;
     }

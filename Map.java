@@ -50,6 +50,10 @@ public class Map{
             }
         }
     }
+    
+    public int getActiveWeatherZonesCount() {
+        return weatherZones.size();
+    }
 
     public boolean isForbidden(Position p) {
         return !isAllowed(p);

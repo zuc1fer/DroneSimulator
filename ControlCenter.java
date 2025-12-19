@@ -81,6 +81,8 @@ public class ControlCenter {
             score += 10;
         }
 
+        score += (drone.getEfficiency() - 1.0) * -20;
+
         return score;
     }
 
