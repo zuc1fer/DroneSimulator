@@ -41,8 +41,23 @@ public class Simulator {
         }
     }
 
-    private void simulateMinute(int minute) {
+    private void simulateMinute(int minute) {}
 
+    private void generateOrders(int minute) {
+        int hour = minute / 60;
+        double orderRate = getOrderRateForHour(hour);
+
+        if (random.nextDouble() < orderRate) {
+            Order order = createOrder(minute);
+            allOrders.add(order);
+            controlCenter.getPendingOrders().add(order);
+            orderStatusCounts.put("PENDING", orderStatusCounts.get("PENDING") + 1);
+
+            if (random.nextDouble() < 0.1) {
+                System.out.printf("MIN %04d: New Order #%03d to %s\n",
+                        minute, order.getId(), formatPosition(order.getDeliverable().getDestination()));
+            }
+        }
     }
 
     private double getOrderRateForHour(int hour) {
@@ -53,5 +68,30 @@ public class Simulator {
         if (hour >= 8 && hour < 19)
             return 0.4;
         return 0.1;
+    }
+
+    private Order createOrder(int minute) {
+        String[] clients = { "Client_A", "Client_B", "Client_C", "Client_D" };
+        Position base = controlCenter.getBase();
+        double angle = random.nextDouble() * 2 * Math.PI;
+        double distance = 3 + random.nextDouble() * 12;
+        double x = base.getX() + Math.cos(angle) * distance;
+        double y = base.getY() + Math.sin(angle) * distance;
+        Position destination = new Position(x, y);
+
+        double weight;
+        double rand = random.nextDouble();
+        if (rand < 0.7)
+            weight = 0.1 + random.nextDouble() * 0.8;
+        else if (rand < 0.95)
+            weight = 1.0 + random.nextDouble() * 1.0;
+        else
+            weight = 2.0 + random.nextDouble() * 0.5;
+
+        String urgency = (random.nextDouble() < 0.25) ? "EXPRESS" : "NORMAL";
+        double basePrice = 100 + weight * 50;
+
+        StandardPackage pkg = new StandardPackage(weight, destination);
+        return new Order(clients[random.nextInt(clients.length)], pkg, urgency, basePrice);
     }
 }
