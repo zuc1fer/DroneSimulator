@@ -128,6 +128,9 @@ public class ControlCenter {
     public static double getHeavyDroneEnergy() { return heavyDroneEnergy; }
 
     public Drone getMostActiveDroneByDistance() {
+
+        if (fleet.isEmpty()) return null;
+
         Drone mostActive = null;
         double maxDistance = 0;
         
@@ -141,6 +144,9 @@ public class ControlCenter {
     }
 
     public Drone getMostActiveDroneByDeliveries() {
+
+        if (fleet.isEmpty()) return null;
+
         Drone mostActive = null;
         int maxDeliveries = 0;
         
