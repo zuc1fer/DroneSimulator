@@ -1,11 +1,16 @@
 public class StandardDrone extends Drone{
-    public StandardDrone(Position position , double battery ){
+    public StandardDrone(Position position , double battery, String nickname ){
 
         super(position , battery , "StandardDrone" , 30 , 1);
     }
 
     @Override
+    protected double getBaseConsumption() {
+        return 3.0;
+    }
+
+    @Override
     public double calculateConsumption(double distance) {
-        return distance * 4.0;
+        return distance * getBaseConsumption() * getEfficiency();
     }
 }
