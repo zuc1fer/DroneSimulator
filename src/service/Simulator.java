@@ -62,7 +62,7 @@ public class Simulator {
         System.out.println("╠════════════════════════════════════════════════════════════╣");
         System.out.println(
                 "║ Simulation Duration: " + SIMULATION_DURATION + " minutes                           ║");
-        System.out.println("║ Fleet Size: " + controlCenter.getDrones().size()
+        System.out.println("║ Squadron Size: " + controlCenter.getDrones().size()
                 + " Drones                                       ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝");
         System.out.println("\n[System] Starting simulation...\n");
@@ -75,7 +75,7 @@ public class Simulator {
                 ControlCenter.getTotalDeliveries(), controlCenter.getPendingOrders().size(),
                 controlCenter.getDrones().stream().filter(d -> !d.getStatus().equals("AVAILABLE")).count());
         System.out.println("╠═════════════════════════════════════════════════════════════════════╣");
-        System.out.println("║ Fleet Status:                                                       ║");
+        System.out.println("║ Squadron Status:                                                       ║");
         for (Drone d : controlCenter.getDrones()) {
             System.out.printf("║  - %-10s (#%02d): %-15s [Bat: %3.0f%%]                    ║\n",
                     d.getNickname(), d.getId(), d.getStatus(), d.getBattery());
@@ -95,7 +95,7 @@ public class Simulator {
         System.out.printf("║ Total Distance Flown: %-8.2f km                                    ║\n", totalDist);
 
         System.out.println("╠══════════════════════════════════════════════════════════════════════╣");
-        System.out.println("║ Drone Performance:                                                   ║");
+        System.out.println("║ Squadron Performance:                                                   ║");
         for (Drone d : controlCenter.getDrones()) {
             System.out.printf("║  %-10s (#%02d): %3d deliveries, %6.2f km flown                   ║\n",
                     d.getNickname(), d.getId(), deliveryCounts.get(d), distanceTraveled.get(d));

@@ -10,7 +10,7 @@ public class ControlCenter {
     private List<Drone> DronesList;
     private List<Order> pendingOrders;
     private Position base;
-    private CityMap map;
+    private TheMap map;
     private List<Order> processedOrders;
 
     private static int totalDeliveries = 0;
@@ -20,7 +20,7 @@ public class ControlCenter {
     private static double expressDroneEnergy = 0;
     private static double heavyDroneEnergy = 0;
 
-    public ControlCenter(List<Drone> DronesList, Position base, CityMap map) {
+    public ControlCenter(List<Drone> DronesList, Position base, TheMap map) {
         this.DronesList = DronesList;
         this.base = base;
         this.map = map;
@@ -28,7 +28,7 @@ public class ControlCenter {
         this.processedOrders = new ArrayList<>();
     }
 
-    public ControlCenter(CityMap map) {
+    public ControlCenter(TheMap map) {
         this(new ArrayList<>(), new Position(0, 0), map);
     }
 
@@ -235,7 +235,7 @@ public class ControlCenter {
         return base;
     }
 
-    public CityMap getMap() {
+    public TheMap getMap() {
         return map;
     }
 

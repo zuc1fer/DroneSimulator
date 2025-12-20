@@ -13,7 +13,7 @@ public class Main {
         List<NoFlyZone> noFlyZones = new ArrayList<>();
         noFlyZones.add(new NoFlyZone(new Position(5, 5), 2.0));
 
-        CityMap map = new CityMap(deliveryZones, noFlyZones);
+        TheMap map = new TheMap(deliveryZones, noFlyZones);
         ControlCenter controlCenter = new ControlCenter(map);
 
         Position base = new Position(0, 0);

@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
-public class CityMap {
+public class TheMap {
     private List<DeliveryZone> dz;
     private List<NoFlyZone> nfz;
     private List<WeatherZone> weatherZones;
 
-    public CityMap(List<DeliveryZone> ndz, List<NoFlyZone> nnfz) {
+    public TheMap(List<DeliveryZone> ndz, List<NoFlyZone> nnfz) {
 
         this.dz = ndz;
         this.nfz = nnfz;
