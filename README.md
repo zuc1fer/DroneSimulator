@@ -34,8 +34,16 @@ java -cp ../bin Main
 Output is printed to the console with a 300ms delay per step for "real-time" visualization. It shows live events and hourly ASCII summaries:
 
 ```text
-MIN 0042: Order #015 -> Drone #02 (ExpressDrone)
-MIN 0055: Weather Alert! Storm near [5.5, -2.1] (Radius: 3.0km)
+╔════════════════════════ HOURLY REPORT (01:00) ══════════════════════╗
+║ Total Deliveries: 2    | Pending Orders: 4    | Active Drones: 0    ║
+╠═════════════════════════════════════════════════════════════════════╣
+║ Fleet Status:                                                       ║
+║  - Alpha      (#01): AVAILABLE       [Bat:  66%]                    ║
+║  - Beta       (#02): AVAILABLE       [Bat: 100%]                    ║
+║  - Gamma      (#03): AVAILABLE       [Bat: 100%]                    ║
+║  - Delta      (#04): AVAILABLE       [Bat: 100%]                    ║
+║  - Epsilon    (#05): AVAILABLE       [Bat: 100%]                    ║
+╚═════════════════════════════════════════════════════════════════════╝
 ```
 
 Adjust `SIMULATION_DURATION` in `Simulator.java` to change the runtime.
