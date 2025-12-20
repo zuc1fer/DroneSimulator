@@ -24,6 +24,10 @@ public class ControlCenter {
         this.processedOrders = new ArrayList<>();
     }
 
+    public ControlCenter(CityMap map) {
+        this(new ArrayList<>(), new Position(0, 0), map);
+    }
+
     public Drone findDroneForOrder(Order order) {
         Drone bestDrone = null;
         double bestScore = -1;
@@ -205,4 +209,11 @@ public class ControlCenter {
     public List<Order> getPendingOrders() {return pendingOrders;}
     public Position getBase() {return base;}
     public CityMap getMap() {return map;}
+
+    public void addDrone(Drone drone) {
+        if (DronesList == null) {
+            DronesList = new ArrayList<>();
+        }
+        DronesList.add(drone);
+    }
 }

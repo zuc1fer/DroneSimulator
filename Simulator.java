@@ -32,13 +32,63 @@ public class Simulator {
     }
 
     public void runSimulation() {
+        printSimulationHeader();
 
         for (currentMinute = 0; currentMinute < SIMULATION_DURATION; currentMinute++) {
             simulateMinute(currentMinute);
 
             if (currentMinute % 60 == 0 && currentMinute > 0) {
+                logHourlyReport(currentMinute / 60);
             }
         }
+        generateFinalReport();
+    }
+
+    private void printSimulationHeader() {
+        System.out.println("╔════════════════════════════════════════════════════════════╗");
+        System.out.println("║                DRONE DELIVERY SIMULATOR 2024               ║");
+        System.out.println("╠════════════════════════════════════════════════════════════╣");
+        System.out.println(
+                "║ Simulation Duration: " + SIMULATION_DURATION + " minutes                                  ║");
+        System.out.println("║ Fleet Size: " + controlCenter.getDrones().size()
+                + " Drones                                           ║");
+        System.out.println("╚════════════════════════════════════════════════════════════╝");
+        System.out.println("\n[System] Starting simulation...\n");
+    }
+
+    private void logHourlyReport(int hour) {
+        System.out.println("\n╒════════════════════════ HOURLY REPORT (" + String.format("%02d:00", hour)
+                + ") ═══════════════════════╕");
+        System.out.printf("│ Total Deliveries: %-4d | Pending Orders: %-4d | Active Drones: %-4d │\n",
+                ControlCenter.getTotalDeliveries(), controlCenter.getPendingOrders().size(),
+                controlCenter.getDrones().stream().filter(d -> !d.getStatus().equals("AVAILABLE")).count());
+        System.out.println("├────────────────────────────────────────────────────────────────────┤");
+        System.out.println("│ Fleet Status:                                                      │");
+        for (Drone d : controlCenter.getDrones()) {
+            System.out.printf("│  - %-10s (#%02d): %-15s [Bat: %3.0f%%]                 │\n",
+                    d.getNickname(), d.getId(), d.getStatus(), d.getBattery());
+        }
+        System.out.println("╘════════════════════════════════════════════════════════════════════╛\n");
+    }
+
+    private void generateFinalReport() {
+        System.out.println("\n\n");
+        System.out.println("╔════════════════════════ FINAL SIMULATION REPORT ════════════════════════╗");
+        System.out.printf("║ Total Duration: %4d mins                                           ║\n",
+                SIMULATION_DURATION);
+        System.out.printf("║ Total Deliveries Completed: %-5d                                   ║\n",
+                ControlCenter.getTotalDeliveries());
+
+        double totalDist = distanceTraveled.values().stream().mapToDouble(Double::doubleValue).sum();
+        System.out.printf("║ Total Distance Flown: %-8.2f km                                    ║\n", totalDist);
+
+        System.out.println("╠═════════════════════════════════════════════════════════════════════════╣");
+        System.out.println("║ Drone Performance:                                                      ║");
+        for (Drone d : controlCenter.getDrones()) {
+            System.out.printf("║  %s (#%02d): %3d deliveries, %6.2f km flown                   ║\n",
+                    d.getNickname(), d.getId(), deliveryCounts.get(d), distanceTraveled.get(d));
+        }
+        System.out.println("╚═════════════════════════════════════════════════════════════════════════╝");
     }
 
     private void simulateMinute(int minute) {

@@ -1,7 +1,7 @@
 public class StandardDrone extends Drone{
     public StandardDrone(Position position , double battery, String nickname ){
 
-        super(position , battery , "StandardDrone" , 30 , 1);
+        super(position , battery , "StandardDrone" , 30 , 1 , nickname);
     }
 
     @Override

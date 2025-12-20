@@ -2,41 +2,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
-public class CityMap {
+public class CityMap{
     private List<DeliveryZone> dz;
     private List<NoFlyZone> nfz;
     private List<WeatherZone> weatherZones;
 
-    public CityMap(List<DeliveryZone> ndz, List<NoFlyZone> nnfz) {
+    public CityMap(List<DeliveryZone> ndz , List<NoFlyZone> nnfz ){
 
         this.dz = ndz;
         this.nfz = nnfz;
         this.weatherZones = new ArrayList<>();
     }
 
-    public void setDZ(List<DeliveryZone> ndz) {
-        this.dz = ndz;
-    }
+    public void setDZ(List<DeliveryZone> ndz){this.dz = ndz;}
+    public void setNFZ(List<NoFlyZone> nnfz){this.nfz = nnfz;}
+    public void setWeatherZones(List<WeatherZone> weatherZones) { this.weatherZones = weatherZones; }
 
-    public void setNFZ(List<NoFlyZone> nnfz) {
-        this.nfz = nnfz;
-    }
-
-    public void setWeatherZones(List<WeatherZone> weatherZones) {
-        this.weatherZones = weatherZones;
-    }
-
-    public List<DeliveryZone> getDZ() {
-        return dz;
-    }
-
-    public List<NoFlyZone> getNFZ() {
-        return nfz;
-    }
-
-    public List<WeatherZone> getWeatherZones() {
-        return new ArrayList<>(weatherZones);
-    }
+    public List<DeliveryZone> getDZ(){return dz;}
+    public List<NoFlyZone> getNFZ(){return nfz;}
+    public List<WeatherZone> getWeatherZones() { return new ArrayList<>(weatherZones); }
 
     public boolean isAllowed(Position p) {
         for (NoFlyZone zone : nfz) {
