@@ -1,3 +1,7 @@
+package map;
+
+import model.Position;
+
 public class WeatherZone extends NoFlyZone {
 
     private int duration;
@@ -16,9 +20,17 @@ public class WeatherZone extends NoFlyZone {
         return duration > 0;
     }
 
-    public String getWeatherType() { return weatherType; }
-    public int getDuration() { return duration; }
-    public int getStartTime() { return startTime; }
+    public String getWeatherType() {
+        return weatherType;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public int getStartTime() {
+        return startTime;
+    }
 
     @Override
     public String toString() {

@@ -1,41 +1,44 @@
+package model;
+
 public class Position{
     private double x;
     private double y;
-    
-    public Position(double nx , double ny){
+
+    public Position(double nx, double ny){
         this.x = nx;
         this.y = ny;
     }
-    
+
     public void setX(double nx){this.x = nx;}
     public void setY(double ny){this.y = ny;}
 
     public double getX(){return x;}
     public double getY(){return y;}
 
-    public double distanceTo(Position other) {
-        return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
-    }
+    public double distanceTo(Position other){return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));}
 
-    public void moveTo(Position destination, double step) {
+    public void moveTo(Position destination, double step){  
         double distance = distanceTo(destination);
-        if (distance == 0) return;
+        if (distance == 0)
+            return;
         double ratio = step / distance;
         this.x = this.x + ratio * (destination.x - this.x);
         this.y = this.y + ratio * (destination.y - this.y);
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         return String.format("(%.2f, %.2f)", x, y);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+    public boolean equals(Object obj){
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
         Position other = (Position) obj;
         return Double.compare(other.x, x) == 0 && Double.compare(other.y, y) == 0;
     }
-    
+
 }

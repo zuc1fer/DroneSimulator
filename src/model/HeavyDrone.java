@@ -1,7 +1,9 @@
-public class HeavyDrone extends Drone{
-    public HeavyDrone(Position position , double battery, String nickname ){
+package model;
 
-        super(position , battery , "HeavyDrone" , 20 , 3, nickname);
+public class HeavyDrone extends Drone {
+    public HeavyDrone(Position position, double battery, String nickname) {
+
+        super(position, battery, "HeavyDrone", 20, 3, nickname);
     }
 
     @Override

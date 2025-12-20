@@ -1,7 +1,9 @@
+package model;
+
 import java.util.List;
 import java.util.ArrayList;
 
-public abstract class Drone{
+public abstract class Drone {
 
     private static int nextId = 1;
     private int id;
@@ -19,7 +21,7 @@ public abstract class Drone{
     private double speedFactor;
     private String nickname;
 
-    public Drone(Position nposition , double nbattery , String nmodel , double nspeed , double ncapacity, String nickname){
+    public Drone(Position nposition, double nbattery, String nmodel, double nspeed, double ncapacity, String nickname) {
 
         this.id = nextId++;
         this.nickname = nickname;
@@ -41,46 +43,105 @@ public abstract class Drone{
         this(nposition, nbattery, nmodel, nspeed, ncapacity, nmodel);
     }
 
-    public int getId() {return id;}
+    public int getId() {
+        return id;
+    }
 
-    public Position getPosition() { return position; }
-    public void setPosition(Position position) { this.position = position; }
+    public Position getPosition() {
+        return position;
+    }
 
-    public double getBattery() { return battery; }
-    public void setBattery(double battery) { this.battery = battery; }
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 
-    public String getModel() { return model; }
-    public void setModel(String model) { this.model = model; }
+    public double getBattery() {
+        return battery;
+    }
+
+    public void setBattery(double battery) {
+        this.battery = battery;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
 
     public double getSpeed() {
         double baseSpeed = 0;
-        if (this instanceof StandardDrone) baseSpeed = 30.0;
-        else if (this instanceof ExpressDrone) baseSpeed = 45.0;
-        else if (this instanceof HeavyDrone) baseSpeed = 20.0;
+        if (this instanceof StandardDrone)
+            baseSpeed = 30.0;
+        else if (this instanceof ExpressDrone)
+            baseSpeed = 45.0;
+        else if (this instanceof HeavyDrone)
+            baseSpeed = 20.0;
 
         return baseSpeed * speedFactor;
     }
-    public void setSpeed(double speed) { this.speed = speed; }
 
-    public double getCapacity() { return capacity; }
-    public void setCapacity(double capacity) { this.capacity = capacity; }
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public double getCapacity() {
+        return capacity;
+    }
 
-    public double getTotalDistance() { return totalDistance; }
-    public void setTotalDistance(double totalDistance) { this.totalDistance = totalDistance; }
+    public void setCapacity(double capacity) {
+        this.capacity = capacity;
+    }
 
-    public int getDeliveryCount() {return deliveryCount;}
-    public void incrementDeliveryCount() {deliveryCount++;}
+    public String getStatus() {
+        return status;
+    }
 
-    public List<Position> getPositionHistory() { return positionHistory; }
-    public void setPositionHistory(List<Position> positionHistory) { this.positionHistory = positionHistory; }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-    public double getEfficiency() { return efficiency; }
-    public double getReliability() { return reliability; }
-    public double getSpeedFactor() { return speedFactor; }
-    public String getNickname() { return nickname; }
+    public double getTotalDistance() {
+        return totalDistance;
+    }
+
+    public void setTotalDistance(double totalDistance) {
+        this.totalDistance = totalDistance;
+    }
+
+    public int getDeliveryCount() {
+        return deliveryCount;
+    }
+
+    public void incrementDeliveryCount() {
+        deliveryCount++;
+    }
+
+    public List<Position> getPositionHistory() {
+        return positionHistory;
+    }
+
+    public void setPositionHistory(List<Position> positionHistory) {
+        this.positionHistory = positionHistory;
+    }
+
+    public double getEfficiency() {
+        return efficiency;
+    }
+
+    public double getReliability() {
+        return reliability;
+    }
+
+    public double getSpeedFactor() {
+        return speedFactor;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
 
     public abstract double calculateConsumption(double distance);
 
@@ -115,8 +176,10 @@ public abstract class Drone{
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
         Drone drone = (Drone) obj;
         return id == drone.id;
     }

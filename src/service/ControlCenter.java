@@ -1,3 +1,7 @@
+package service;
+
+import model.*;
+import map.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -165,11 +169,25 @@ public class ControlCenter {
         pendingOrders.add(order);
     }
 
-    public static int getTotalDeliveries() {return totalDeliveries;}
-    public static double getTotalDistance() {return totalDistance;}
-    public static double getStandardDroneEnergy() {return standardDroneEnergy;}
-    public static double getExpressDroneEnergy() {return expressDroneEnergy;}
-    public static double getHeavyDroneEnergy() {return heavyDroneEnergy;}
+    public static int getTotalDeliveries() {
+        return totalDeliveries;
+    }
+
+    public static double getTotalDistance() {
+        return totalDistance;
+    }
+
+    public static double getStandardDroneEnergy() {
+        return standardDroneEnergy;
+    }
+
+    public static double getExpressDroneEnergy() {
+        return expressDroneEnergy;
+    }
+
+    public static double getHeavyDroneEnergy() {
+        return heavyDroneEnergy;
+    }
 
     public Drone getMostActiveDroneByDistance() {
 
@@ -205,10 +223,21 @@ public class ControlCenter {
         return mostActive;
     }
 
-    public List<Drone> getDrones() {return DronesList;}
-    public List<Order> getPendingOrders() {return pendingOrders;}
-    public Position getBase() {return base;}
-    public CityMap getMap() {return map;}
+    public List<Drone> getDrones() {
+        return DronesList;
+    }
+
+    public List<Order> getPendingOrders() {
+        return pendingOrders;
+    }
+
+    public Position getBase() {
+        return base;
+    }
+
+    public CityMap getMap() {
+        return map;
+    }
 
     public void addDrone(Drone drone) {
         if (DronesList == null) {
