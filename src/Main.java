@@ -16,11 +16,12 @@ public class Main {
         CityMap map = new CityMap(deliveryZones, noFlyZones);
         ControlCenter controlCenter = new ControlCenter(map);
 
-        controlCenter.addDrone(new StandardDrone(new Position(0, 0), 100, "Alpha"));
-        controlCenter.addDrone(new ExpressDrone(new Position(0, 0), 100, "Beta"));
-        controlCenter.addDrone(new HeavyDrone(new Position(0, 0), 100, "Gamma"));
-        controlCenter.addDrone(new StandardDrone(new Position(0, 0), 100, "Delta"));
-        controlCenter.addDrone(new ExpressDrone(new Position(0, 0), 100, "Epsilon"));
+        Position base = new Position(0, 0);
+        controlCenter.addDrone(DroneFactory.createDrone("STANDARD", base, "Alpha"));
+        controlCenter.addDrone(DroneFactory.createDrone("EXPRESS", base, "Beta"));
+        controlCenter.addDrone(DroneFactory.createDrone("HEAVY", base, "Gamma"));
+        controlCenter.addDrone(DroneFactory.createDrone("STANDARD", base, "Delta"));
+        controlCenter.addDrone(DroneFactory.createDrone("EXPRESS", base, "Epsilon"));
 
         Simulator simulator = new Simulator(controlCenter);
         simulator.runSimulation();
