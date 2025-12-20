@@ -40,6 +40,14 @@ public class Simulator {
             if (currentMinute % 60 == 0 && currentMinute > 0) {
                 logHourlyReport(currentMinute / 60);
             }
+
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.out.println("Simulation interrupted");
+                break;
+            }
         }
         generateFinalReport();
     }
