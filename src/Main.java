@@ -22,6 +22,7 @@ public class Main {
         controlCenter.addDrone(DroneFactory.createDrone("HEAVY", base, "Gamma"));
         controlCenter.addDrone(DroneFactory.createDrone("STANDARD", base, "Delta"));
         controlCenter.addDrone(DroneFactory.createDrone("EXPRESS", base, "Epsilon"));
+        controlCenter.addDrone(DroneFactory.createDrone("HEAVY", base, "Zeta"));
 
         Simulator simulator = new Simulator(controlCenter);
         simulator.runSimulation();
