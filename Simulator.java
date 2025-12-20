@@ -45,7 +45,7 @@ public class Simulator {
         generateOrders(minute);
         processPendingOrders();
         updateDrones(minute);
-        // updateWeatherConditions(minute);
+        updateWeatherConditions(minute);
     }
 
     // ... [Inside updateDrones]
