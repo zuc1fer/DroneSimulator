@@ -48,15 +48,6 @@ public class Simulator {
         updateWeatherConditions(minute);
     }
 
-    // ... [Inside updateDrones]
-    if(random.nextDouble()<0.1)
-
-    {
-        completeDelivery(drone, minute);
-    }else
-    {
-    // ...
-
     private void completeDelivery(Drone drone, int minute) {
         Order order = deliveryAssignments.get(drone);
         if (order != null) {

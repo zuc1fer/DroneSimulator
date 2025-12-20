@@ -1,5 +1,5 @@
 public class WeatherZone extends NoFlyZone {
-    
+
     private int duration;
     private String weatherType;
     private int startTime;
@@ -22,7 +22,11 @@ public class WeatherZone extends NoFlyZone {
 
     @Override
     public String toString() {
-        return String.format("WeatherZone[%s, Radius: %.1fkm, Duration: %dmin left]", 
-            weatherType, getRadius(), duration);
+        return String.format("WeatherZone[%s, Radius: %.1fkm, Duration: %dmin left]",
+                weatherType, getRadius(), duration);
+    }
+
+    public WeatherZone(Position center, double radius, int duration) {
+        this(center, radius, "STORM", duration, 0);
     }
 }
