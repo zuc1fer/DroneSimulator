@@ -1,68 +1,41 @@
 # Drone Delivery Simulator
 
-A robust, console-based Java simulation engine modeling an autonomous delivery network. This project simulates fleet operations including order scheduling, pathfinding, battery management, and dynamic weather events.
+A Java-based simulation for managing a drone delivery fleet. It runs a tick-based system (minute by minute) to handle orders, dispatch drones, tracking battery usage and distance logic.
 
-## Overview
+## How it Works
 
-The simulator operates on a minute-by-minute tick system, managing a fleet of drones with varying specifications (Speed, Battery Efficiency, Payload). It handles creating orders, assigning the optimal drone based on heuristics (distance, battery, urgency), and generating detailed performance reports.
+The sim runs for a set duration (default 480 mins). Every minute, it checks for:
+- **New Orders**: Randomly generated based on time-of-day traffic.
+- **Drone Logic**: Assigning the best available drone (Heavy, Express, or Standard) to an order.
+- **Environment**: Random storms that create temporary no-fly zones.
 
-**Key Capabilities:**
-*   **Heterogeneous Fleet**: Supports Standard, Express, and Heavy-lift drones.
-*   **Dynamic Environment**: Randomly generates weather events (storms) that act as temporary no-fly zones.
-*   **Smart Dispatching**: Assigns orders based on drone availability, battery life, and delivery urgency.
-*   **Real-time Analytics**: Live console feed with ASCII-formatted hourly and final performance reports.
+## Structure
 
-## Project Structure
+Code is split into logic packages:
+- `src/model`: Data classes (Drone, Order, Position).
+- `src/map`: Zone definitions and map logic.
+- `src/service`: The main `Simulator` loop and `ControlCenter` dispatch logic.
 
-The codebase is organized into a modular package structure:
+## Usage
 
-*   `src/model`: Core data entities (`Drone`, `Order`, `Position`).
-*   `src/map`: Geospatial components (`CityMap`, `DeliveryZone`, `WeatherZone`).
-*   `src/service`: Business logic and orchestration (`ControlCenter`, `Simulator`).
+Compiling and running from the command line:
 
-## Getting Started
+```bash
+cd src
+# Compile to ../bin
+javac -d ../bin model/*.java map/*.java service/*.java Main.java
 
-### Prerequisites
-*   Java Development Kit (JDK) 8 or higher.
-
-### Installation & Run
-
-1.  **Navigate** to the source directory:
-    ```bash
-    cd src
-    ```
-2.  **Compile** the project (placing binaries in a `../bin` folder):
-    ```bash
-    javac -d ../bin model/*.java map/*.java service/*.java Main.java
-    ```
-3.  **Run** the simulation:
-    ```bash
-    java -cp ../bin Main
-    ```
-
-## Simulation Output
-
-The simulation runs for a default of **480 minutes** (8 hours). You will see real-time logs for:
-*   New Order generation.
-*   Drone dispatches and returns.
-*   Weather alerts.
-
-**Example Report:**
-```text
-╔════════════════════════ HOURLY REPORT (02:00) ══════════════════════╗
-║ Total Deliveries: 12   | Pending Orders: 5    | Active Drones: 3    ║
-╠═════════════════════════════════════════════════════════════════════╣
-║ Fleet Status:                                                       ║
-║  - Alpha      (#01): AVAILABLE       [Bat:  85%]                    ║
-║  - Beta       (#02): IN_DELIVERY     [Bat:  42%]                    ║
-╚═════════════════════════════════════════════════════════════════════╝
+# Run
+java -cp ../bin Main
 ```
 
-## Configuration
+## Logs
 
-You can tweak simulation parameters in `src/service/Simulator.java`:
-*   `SIMULATION_DURATION`: Total runtime in minutes.
-*   `Thread.sleep(300)`: Adjusts the visual playback speed (default: 300ms delay).
+Output is printed to the console with a 300ms delay per step for "real-time" visualization. It shows live events and hourly ASCII summaries:
 
----
-*Built with pure Java. No external dependencies.*
+```text
+MIN 0042: Order #015 -> Drone #02 (ExpressDrone)
+MIN 0055: Weather Alert! Storm near [5.5, -2.1] (Radius: 3.0km)
+```
+
+Adjust `SIMULATION_DURATION` in `Simulator.java` to change the runtime.
